@@ -1,18 +1,27 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { searchUser } from "../redux/action/Searchaction";
 import './searchPage.css'
-
+import { useDispatch,useSelector } from "react-redux";
 import { Button, Input, Space } from "antd";
 
+
 export const SearchPage = () => {
+    const dispatch= useDispatch()
+    const navigate= useNavigate()
     const[searchKey,setSearchkey]=useState("")
     
-    const handleSubmit=e=>{
+    const handleSubmit=async(e)=>{
        if(searchKey !==""){
         e.preventDefault()
-        console.log("button clicked")
+        dispatch(searchUser(searchKey))
        }
     }
- 
+    const loading=useSelector(state=>state.user.loading)
+    if(loading){
+        navigate('/userdetail')
+    }
+    
 
   return (
     <div className="searchcontainer">
