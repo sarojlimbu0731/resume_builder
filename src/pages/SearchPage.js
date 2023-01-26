@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { searchUser } from "../redux/action/Searchaction";
 import "./searchPage.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Button, Input, Space } from "antd";
 
 export const SearchPage = () => {
@@ -10,16 +10,15 @@ export const SearchPage = () => {
   const navigate = useNavigate();
   const [searchKey, setSearchkey] = useState("");
 
+  let regex = /^.{3,}$/;
+
   const handleSubmit = async (e) => {
-    if (searchKey !== "") {
+    if (regex.test(searchKey)) {
       e.preventDefault();
       dispatch(searchUser(searchKey));
+      navigate("/userdetail");
     }
   };
-  const loading = useSelector((state) => state.user.loading);
-  if (loading) {
-    navigate("/userdetail");
-  }
 
   return (
     <div className="searchcontainer">
