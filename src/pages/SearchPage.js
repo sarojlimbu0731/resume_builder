@@ -25,9 +25,12 @@ export const SearchPage = () => {
 
   return (
     <div className="searchcontainer">
-    
-
-      <Space direction="horizontal">
+        <div className="header">
+            <h1>Github Profile</h1>
+            <h3>Generate your Github Profile</h3>
+        </div>
+        <div>
+        <Space direction="horizontal">
         <Input
           size="large"
           status="warning"
@@ -46,7 +49,7 @@ export const SearchPage = () => {
           Generate
         </Button>
       </Space>
-
+        </div>
     </div>
   );
 };
