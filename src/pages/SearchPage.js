@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { searchUser } from "../redux/action/Searchaction";
 import "./searchPage.css";
-import { useDispatch } from "react-redux";
 import { Button, Input, Space } from "antd";
 
 export const SearchPage = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchKey, setSearchkey] = useState("");
 
@@ -15,8 +12,7 @@ export const SearchPage = () => {
   const handleSubmit = async (e) => {
     if (regex.test(searchKey)) {
       e.preventDefault();
-      dispatch(searchUser(searchKey));
-      navigate("/userdetail");
+      navigate(`/userdetail/${searchKey}`);
     }
   };
 

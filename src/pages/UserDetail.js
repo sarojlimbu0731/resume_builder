@@ -1,5 +1,8 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { searchUser } from "../redux/action/Searchaction";
+
 import {
   ArrowLeftOutlined,
   MailOutlined,
@@ -9,17 +12,21 @@ import {
   CalendarOutlined,
   GlobalOutlined,
 } from "@ant-design/icons";
-import {Button} from "antd";
-import {useNavigate} from "react-router-dom";
+import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 import "./userDetail.css";
-import {Tag} from "antd";
+import { Tag } from "antd";
 
 export const UserDetail = () => {
+  const { key } = useParams();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const data = useSelector((state) => state.user);
   const loading = data.loading;
   const user = data.user_details;
-  console.log(user);
+  useEffect(() => {
+    dispatch(searchUser(key));
+  }, [dispatch, key]);
 
   if (user) {
     if (user.follower > 1000) {

@@ -1,4 +1,7 @@
-export const searchReducer = (state = {}, action) => {
+export const searchReducer = (
+  state = { loading: true, user_details: "" },
+  action
+) => {
   switch (action.type) {
     case "Search_Request":
       return {

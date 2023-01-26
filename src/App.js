@@ -8,7 +8,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<SearchPage />} />
-        <Route path="/userdetail" element={<UserDetail />} />
+        <Route path="/userdetail/:key" element={<UserDetail />} />
       </Routes>
     </Router>
   );
